@@ -1,4 +1,0 @@
-{
-  "bash-script": "echo \"Hello world\" \nexport PROFILE=\"teacher\"\necho $PROFILE\n",
-  "para": "This sentence will be in single line\n"
-}
