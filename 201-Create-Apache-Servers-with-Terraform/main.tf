@@ -9,6 +9,7 @@ terraform {
 provider "aws" {
   region = "us-east-1"
 }
+
 resource "aws_security_group" "tf-sec-gr" {
   name = "tf-project"
   ingress {
@@ -34,8 +35,31 @@ resource "aws_security_group" "tf-sec-gr" {
     from_port   = 0
     protocol    = -1
     to_port     = 0
+
+ # dynamic "ingress" {
+   # for_each = var.secgr-dynamic-ports
+   # content {
+     # from_port = ingress.value
+     # to_port = ingress.value
+     # protocol = "tcp"
+     # cidr_blocks = ["0.0.0.0/0"]
+#  }
+#(we can use this code block instead of ingresses)
   }
 }
+
+# variable "secgr-dynamic-ports" {    
+  # default = [22,80,443]
+# }
+  
+  
+  
+  
+  
+  
+  
+  
+  
 resource "aws_instance" "apache-server" {
   ami             = data.aws_ami.amazon-linux-2.id
   instance_type   = "t2.micro"
